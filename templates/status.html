@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Check Complaint Status{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Check Complaint Status</h4>
+        <form method="POST">
+          <div class="input-group">
+            <input type="number" class="form-control" name="complaint_id" placeholder="Enter Complaint ID" required>
+            <button class="btn btn-primary" type="submit">Check</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% if complaint %}
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5>Complaint #{{ complaint.id }}</h5>
+        <p><strong>Name:</strong> {{ complaint.name }}</p>
+        <p><strong>Category:</strong> {{ complaint.category }}</p>
+        <p><strong>Description:</strong> {{ complaint.description }}</p>
+        <p><strong>Status:</strong>
+          <span class="badge bg-{{ 'success' if complaint.status=='Resolved' else 'warning' if complaint.status=='In Progress' else 'secondary' }}">
+            {{ complaint.status }}
+          </span>
+        </p>
+        <p><strong>Submitted:</strong> {{ complaint.created_at }}</p>
+        {% if complaint.attachment_url %}
+          <p><a href="{{ complaint.attachment_url }}" target="_blank">View Attachment</a></p>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h4 class="mb-3">All Complaints (Admin View)</h4>
+<div class="table-responsive">
+<table class="table table-bordered table-striped bg-white">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Category</th><th>Description</th>
+      <th>Attachment</th><th>Status</th><th>Submitted</th><th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in complaints %}
+    <tr>
+      <td>{{ c.id }}</td>
+      <td>{{ c.name }}</td>
+      <td>{{ c.email }}</td>
+      <td>{{ c.category }}</td>
+      <td>{{ c.description }}</td>
+      <td>
+        {% if c.attachment_url %}
+          <a href="{{ c.attachment_url }}" target="_blank">View</a>
+        {% else %}
+          —
+        {% endif %}
+      </td>
+      <td>
+        <span class="badge bg-{{ 'success' if c.status=='Resolved' else 'warning' if c.status=='In Progress' else 'secondary' }}">
+          {{ c.status }}
+        </span>
+      </td>
+      <td>{{ c.created_at }}</td>
+      <td>
+        <form action="{{ url_for('update_status', complaint_id=c.id) }}" method="POST" class="d-flex gap-1">
+          <select name="status" class="form-select form-select-sm">
+            <option {% if c.status=='Pending' %}selected{% endif %}>Pending</option>
+            <option {% if c.status=='In Progress' %}selected{% endif %}>In Progress</option>
+            <option {% if c.status=='Resolved' %}selected{% endif %}>Resolved</option>
+          </select>
+          <button class="btn btn-sm btn-primary" type="submit">Save</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

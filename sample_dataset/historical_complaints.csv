@@ -1,0 +1,7 @@
+name,email,category,description,status,created_at
+Priya Nair,priya.nair@example.com,Technical Issue,App crashes when uploading photo,Resolved,2026-01-05
+Suresh Iyer,suresh.iyer@example.com,Customer Service,Support agent was unresponsive,Pending,2026-01-08
+Meena Rao,meena.rao@example.com,Billing,Refund not processed after 10 days,In Progress,2026-01-10
+Arjun Das,arjun.das@example.com,Delivery,Wrong item delivered,Resolved,2026-01-12
+Kavya Menon,kavya.menon@example.com,Product Quality,Product stopped working in 2 days,Pending,2026-01-15
+Vikram Shah,vikram.shah@example.com,Other,Website checkout page keeps failing,In Progress,2026-01-18

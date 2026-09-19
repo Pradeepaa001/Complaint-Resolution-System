@@ -1,0 +1,17 @@
+.env
+*:Zone.Identifier
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Database & Storage
+*.sqlite3
+*.db
